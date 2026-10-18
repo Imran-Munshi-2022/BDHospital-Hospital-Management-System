@@ -1,0 +1,124 @@
+// BDHospital — Prisma schema (SQLite)
+// Web Engineering Lab CSE416 — Imran Munshi (222-15-6376), Daffodil International University
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Specialty {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  icon        String   @default("Stethoscope")
+  doctors     Doctor[]
+}
+
+model Doctor {
+  id              Int           @id @default(autoincrement())
+  fullName        String
+  email           String        @unique
+  phone           String
+  gender          String        @default("Male")
+  designation     String
+  specialtyId     Int
+  specialty       Specialty     @relation(fields: [specialtyId], references: [id], onDelete: Cascade)
+  bio             String        @default("")
+  experienceYears Int           @default(5)
+  consultationFee Float         @default(500)
+  rating          Float         @default(0)
+  reviewCount     Int           @default(0)
+  photo           String        @default("/images/doctors/doctor-1.png")
+  isAvailable     Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  appointments    Appointment[]
+  reviews         Review[]
+  blogs           Blog[]
+}
+
+model Patient {
+  id              Int              @id @default(autoincrement())
+  fullName        String
+  email           String           @unique
+  phone           String
+  gender          String           @default("Male")
+  age              Int              @default(30)
+  bloodGroup      String           @default("O+")
+  address         String           @default("")
+  insuranceId     String?
+  createdAt       DateTime         @default(now())
+  appointments    Appointment[]
+  reviews         Review[]
+  trackingRecords TrackingRecord[]
+  beds            Bed[]
+}
+
+model Appointment {
+  id              Int              @id @default(autoincrement())
+  doctorId        Int
+  patientId       Int
+  date            String // "YYYY-MM-DD"
+  timeSlot        String // e.g. "10:00 AM"
+  reason          String
+  status          String           @default("SCHEDULED") // SCHEDULED | CONFIRMED | COMPLETED | CANCELLED
+  notes           String?
+  createdAt       DateTime         @default(now())
+  doctor          Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient         Patient          @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  trackingRecords TrackingRecord[]
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  doctorId  Int
+  patientId Int
+  rating    Int // 1..5
+  comment   String
+  createdAt DateTime @default(now())
+  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient   Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model TrackingRecord {
+  id             Int          @id @default(autoincrement())
+  patientId      Int
+  appointmentId  Int?         @unique
+  tokenNumber    String       @unique // "T-101"
+  currentStage   String       @default("REGISTRATION") // REGISTRATION | TRIAGE | CONSULTATION | DIAGNOSTICS | PHARMACY | CHECKOUT
+  stageEnteredAt DateTime     @default(now())
+  priority       String       @default("NORMAL") // NORMAL | URGENT | EMERGENCY
+  room           String?
+  vitals         String? // JSON string {bp, pulse, temp, spo2}
+  status         String       @default("ACTIVE") // ACTIVE | COMPLETED
+  history        String?      @default("[]") // JSON string [{stage, enteredAt, durationMin}]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  patient        Patient      @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  appointment    Appointment? @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+}
+
+model Bed {
+  id        Int      @id @default(autoincrement())
+  ward      String // GENERAL | ICU | EMERGENCY | MATERNITY | PEDIATRIC
+  bedNumber String   @unique
+  status    String   @default("AVAILABLE") // AVAILABLE | OCCUPIED | CLEANING
+  patientId Int?
+  patient   Patient? @relation(fields: [patientId], references: [id], onDelete: SetNull)
+}
+
+model Blog {
+  id          Int      @id @default(autoincrement())
+  title       String
+  summary     String
+  content     String
+  category    String   @default("General Health")
+  coverImage  String
+  authorId    Int
+  publishedAt DateTime @default(now())
+  views       Int      @default(0)
+  author      Doctor   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
