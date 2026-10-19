@@ -32,37 +32,37 @@ Built as an interactive single-page application with **7 core modules**, backed 
 ### 📊 Dashboard & Doctor Management
 | 01. Hospital Dashboard (Analytics) | 02. Doctor Directory |
 | :---: | :---: |
-| ![01 Dashboard](01-dashboard-full.jpg) | ![02 Doctor Directory](02-doctors-directory-full.jpg) |
+| ![01 Dashboard](01-dashboard-full.png) | ![02 Doctor Directory](02-doctors-directory-full.png) |
 
 | 03. Doctor Profile & Reviews Dialog | 04. Write a Review Modal |
 | :---: | :---: |
-| ![03 Doctor Profile](03-doctor-profile-dialog-dark.jpg) | ![04 Write Review](04-write-review-dialog-dark.jpg) |
+| ![03 Doctor Profile](03-doctor-profile-dialog-dark.png) | ![04 Write Review](04-write-review-dialog-dark.png) |
 
 ### 🧑‍🤝‍🧑 Patient Registry & Appointment Scheduling
 | 05. Patient Registry | 06. Patient Profile & Medical Journey |
 | :---: | :---: |
-| ![05 Patient Registry](05-patients-registry-full.jpg) | ![06 Patient Profile](06-patient-profile-dialog-dark.png) |
+| ![05 Patient Registry](05-patients-registry-full.png) | ![06 Patient Profile](06-patient-profile-dialog-dark.png) |
 
 | 07. Appointments Management | 08. Book an Appointment Dialog |
 | :---: | :---: |
-| ![07 Appointments](07-appointments-full.jpg) | ![08 Booking Dialog](08-booking-dialog-dark.jpg) |
+| ![07 Appointments](07-appointments-full.png) | ![08 Booking Dialog](08-booking-dialog-dark.png) |
 
 ### ⭐ Reviews, Real-Time Tracking, Wards & Health Blogs
 | 09. Verified Doctor Reviews Wall | 10. Real-Time Patient Tracking & Wards |
 | :---: | :---: |
-| ![09 Doctor Reviews](09-reviews-full.jpg) | ![10 Live Tracking](10-live-tracking-full.jpg) |
+| ![09 Doctor Reviews](09-reviews-full.png) | ![10 Live Tracking](10-live-tracking-full.png) |
 
 | 11. Live Patient Vitals & Journey Modal | 12. Ward & Bed Occupancy Management |
 | :---: | :---: |
-| ![11 Patient Tracking Modal](11-tracking-detail-dialog.jpg) | ![12 Ward Management](12-ward-bed-management.jpg) |
+| ![11 Patient Tracking Modal](11-tracking-patient-detail-dark.png) | ![12 Ward Management](12-new-arrival-checkin-dark.png) |
 
 | 13. Health Library (Blogs) | 14. In-App Health Article Reader |
 | :---: | :---: |
-| ![13 Health Blogs](13-health-blogs-full.jpg) | ![14 Article Reader](14-blog-reader-dialog.jpg) |
+| ![13 Health Blogs](13-health-blogs-full.png) | ![14 Article Reader](14-article-reader-dark.png) |
 
 | 15. Publish Health Article Dialog | 16. Light Mode / Emergency Overview |
 | :---: | :---: |
-| ![15 Publish Blog](15-publish-blog-dialog.jpg) | ![16 Light Theme View](16-light-theme-dashboard.jpg) |
+| ![15 Publish Blog](15-add-doctor-dialog-dark.png) | ![16 Light Theme View](17-dashboard-viewport-dark.png) |
 
 ---
 
@@ -141,9 +141,3 @@ Built as an interactive single-page application with **7 core modules**, backed 
 
 ---
 
-## 🚀 Getting Started Locally
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Imran-Munshi-2022/your-repo-name.git](https://github.com/Imran-Munshi-2022/your-repo-name.git)
-   cd your-repo-name
